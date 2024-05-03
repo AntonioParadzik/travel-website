@@ -1,10 +1,10 @@
-.NavbarItems{
+.NavbarItems {
     background-color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 30px;
-    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .25);
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
     width: 95%;
     height: 80px;
     border-radius: 13px;
@@ -15,13 +15,13 @@
     z-index: 99;
 }
 
-.navbar-logo{
+.navbar-logo {
     color: #222;
     font-size: 2rem;
     cursor: pointer;
 }
 
-.nav-menu{
+.nav-menu {
     display: grid;
     grid-template-columns: repeat(6, auto);
     grid-gap: 10px;
@@ -29,7 +29,7 @@
     align-items: center;
 }
 
-.nav-links{
+.nav-links {
     text-decoration: none;
     color: #222;
     font-size: 1.2rem;
@@ -38,22 +38,22 @@
     white-space: nowrap;
 }
 
-.nav-links i{
+.nav-links i {
     padding-right: 10px;
 }
 
-.nav-links:hover{
+.nav-links:hover {
     background-color: #01959a;
     color: #fff;
     border-radius: 4px;
     transition: all 0.2s ease-in-out;
 }
 
-.nav-links-mobile{
+.nav-links-mobile {
     display: none;
 }
 
-button{
+button {
     padding: 0.5rem 1rem;
     white-space: nowrap;
     border-radius: 0.3rem;
@@ -64,17 +64,17 @@ button{
     transition: 0.2s ease-in-out;
 }
 
-button:hover{
+button:hover {
     background-color: #151516;
     color: #fff;
 }
 
-.menu-icons{
+.menu-icons {
     display: none;
 }
 
-@media screen and (max-width: 850px){
-    .nav-menu{
+@media screen and (max-width: 850px) {
+    .nav-menu {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -92,30 +92,30 @@ button:hover{
         border-radius: 13px;
     }
 
-    .nav-menu.active{
+    .nav-menu.active {
         left: 0;
         opacity: 1;
         z-index: -1;
         transition: 0.3s ease-in-out;
     }
 
-    .nav-links{
+    .nav-links {
         display: block;
         width: 100%;
         font-size: 1.2rem;
         padding: 2rem 0;
     }
 
-    .nav-links:hover{
+    .nav-links:hover {
         background: #01959a;
         transition: none;
     }
 
-    button{
+    button {
         display: none;
     }
 
-    .nav-links-mobile{
+    .nav-links-mobile {
         display: block;
         text-align: center;
         padding: 1.5rem;
@@ -130,14 +130,13 @@ button:hover{
         letter-spacing: 2px;
     }
 
-    .menu-icons{
+    .menu-icons {
         display: block;
         cursor: pointer;
     }
 
-    .menu-icons i{
+    .menu-icons i {
         font-size: 1.2rem;
         color: #222;
     }
-    
 }

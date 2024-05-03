@@ -1,6 +1,5 @@
 import firebase from "../firebase.js";
 import Product from "../models/productModel.js";
-import { initializeFirestore } from "firebase/firestore";
 import {
   getFirestore,
   collection,

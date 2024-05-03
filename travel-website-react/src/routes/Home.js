@@ -7,23 +7,21 @@ import axios from 'axios'
 import { useEffect } from 'react'
 
 function Home() {
-    useEffect(() => {
-        const productData = {
-            name: 'Product 1',
-            price: 10,
-            retailer: 'a',
-            amountInStock: 2
-        }
-
-        axios
-            .post('http://localhost:5000/api/new', productData)
-            .then((response) => {
-                console.log(response.data) // Output: 'product created successfully'
-            })
-            .catch((error) => {
-                console.error(error)
-            })
-    }, [])
+    // useEffect(() => {
+    //     axios
+    //         .post('http://localhost:5000/api/new', {
+    //             name: 'Product 1',
+    //             price: 10,
+    //             retailer: 'a',
+    //             amountInStock: 2
+    //         })
+    //         .then((response) => {
+    //             console.log(response.data) // Output: 'product created successfully'
+    //         })
+    //         .catch((error) => {
+    //             console.error(error)
+    //         })
+    // }, [])
 
     return (
         <>
