@@ -8,9 +8,9 @@ function Hero(props) {
             <div className="hero-text">
                 <h1>{props.title}</h1>
                 <p>{props.text}</p>
-                <a href={props.url} className={props.buttonClass}>
+                {/* <a href={props.url} className={props.buttonClass}>
                     {props.buttonText}
-                </a>
+                </a> */}
             </div>
         </div>
     )

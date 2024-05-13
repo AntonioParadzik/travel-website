@@ -1,12 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 import { useAuth } from '../contexts/AuthContext.js'
 
 export default function Register() {
     const navigate = useNavigate()
 
-    const [name, setName] = useState('')
+    const [userName, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
@@ -15,11 +16,11 @@ export default function Register() {
 
     const { currentUser, register, setError } = useAuth()
 
-    // useEffect(() => {
-    //     if (currentUser) {
-    //         navigate('/')
-    //     }
-    // }, [currentUser, navigate])
+    useEffect(() => {
+        if (currentUser) {
+            navigate('/')
+        }
+    }, [currentUser, navigate])
 
     async function handleFormSubmit(e) {
         e.preventDefault()
@@ -31,8 +32,13 @@ export default function Register() {
         try {
             setError('')
             setLoading(true)
-            await register(email, password)
-            navigate('/profile')
+            const userCredential = await register(email, password)
+            const userData = {
+                uid: userCredential.user.uid,
+                email: userCredential.user.email,
+                username: userName
+            }
+            await axios.post('http://localhost:5000/api/newUser', userData)
         } catch (e) {
             setError('Failed to register')
         }
@@ -50,13 +56,13 @@ export default function Register() {
                     <div className="">
                         <div>
                             <input
-                                id="name"
-                                name="name"
+                                id="username"
+                                name="username"
                                 type="text"
                                 required
                                 className=""
-                                placeholder="Your Name"
-                                onChange={(e) => setName(e.target.value)}
+                                placeholder="Username"
+                                onChange={(e) => setUsername(e.target.value)}
                             />
                         </div>
                         <div>

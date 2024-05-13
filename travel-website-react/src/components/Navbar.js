@@ -35,12 +35,28 @@ const Navbar = () => {
             <ul className={clicked ? 'nav-menu active' : 'nav-menu'}>
                 {MenuItems.map((item, index) => (
                     <li key={index}>
-                        <Link className={item.cName} to={item.url}>
+                        <Link
+                            className={item.cName}
+                            onClick={window.scrollTo(0, 0)}
+                            to={item.url}
+                        >
                             <i className={item.icon}></i>
                             {item.title}
                         </Link>
                     </li>
                 ))}
+                {currentUser && (
+                    <li>
+                        <Link
+                            className="nav-links"
+                            onClick={window.scrollTo(0, 0)}
+                            to="/cart"
+                        >
+                            <i className="fa-solid fa-cart-shopping"></i>
+                            Cart
+                        </Link>
+                    </li>
+                )}
                 {!currentUser && (
                     <Link to="/login">
                         <button>Sign Up</button>
@@ -48,6 +64,19 @@ const Navbar = () => {
                 )}
                 {currentUser && (
                     <button onClick={() => handleLogout()}>Logout</button>
+                )}
+                {!currentUser && (
+                    <Link className="nav-links-mobile" to="/login">
+                        Sign Up
+                    </Link>
+                )}
+                {currentUser && (
+                    <Link
+                        className="nav-links-mobile"
+                        onClick={() => handleLogout()}
+                    >
+                        Logout
+                    </Link>
                 )}
             </ul>
         </nav>

@@ -1,7 +1,37 @@
+import React, { useState, useEffect } from 'react'
 import DestinationData from './DestinationData'
 import './DestinationStyles.css'
+import ShowTrip from './ShowTrip'
+import axios from 'axios'
 
 const Destination = () => {
+    const [showModal, setShowModal] = useState(false)
+    const [selectedTrip, setSelectedTrip] = useState(null)
+    const [destination1, setDestination1] = useState(null)
+    const [trip1, setTrip1] = useState(null)
+    const [destination2, setDestination2] = useState(null)
+    const [trip2, setTrip2] = useState(null)
+
+    const handleTripClick = (trip) => {
+        setSelectedTrip(trip)
+        setShowModal(true)
+    }
+
+    useEffect(() => {
+        axios
+            .get('http://localhost:5000/api/randomDestination')
+            .then((response) => {
+                const [result1, result2] = response.data
+                setTrip1(result1.trip)
+                setDestination1(result1.destination)
+                setTrip2(result2.trip)
+                setDestination2(result2.destination)
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+    }, [])
+
     return (
         <div className="destination">
             <h1>Popular Destinations</h1>
@@ -10,20 +40,33 @@ const Destination = () => {
                 frame.
             </p>
 
-            <DestinationData
-                className="first-des"
-                heading="Taal Volcano, Batangas"
-                text="One of the most iconic views in Luzon, Mt.Taal boasts a volcano inside a lake inside an island. If you fancy a closer look, the hike up to the crater is a mere 45 minutes, and is easy enough for beginners. Guides will assist you most of the way, and you'll see the peculiar environment found on an active volcano, including volcanic rocks and steam vents. The hike can be dusty and hot, so plan for an early morning trip, and then unwind with some bulalo before heading back home!"
-                img1={require('../assets/1.jpg')}
-                img2={require('../assets/2.jpg')}
-            />
-            <DestinationData
-                className="first-des-reverse"
-                heading="Mt. Daguldul, Batangas"
-                text="If you're looking for a hike that's a little more challenging but still good for a beginner mountaineer, check out Mt. Daguldul in San Juan, Batangas. You''ll start your hike from the beach and pass through tropical forest, different rock formations, and small streams. There's a small store halfway up the trail where you can take a break and drink buko juice, and though the summit itself may nit have the best view, the breeze is fantastic. Once you've made it back down, head straight to the beach for a refresing well-deserved swim."
-                img1={require('../assets/5.jpg')}
-                img2={require('../assets/8.jpg')}
-            />
+            {destination1 && (
+                <DestinationData
+                    className="first-des"
+                    heading={destination1.heading}
+                    text={destination1.text}
+                    img1={destination1.img1}
+                    img2={destination1.img2}
+                    button="View Plan"
+                    onClick={() => handleTripClick(trip1)}
+                />
+            )}
+
+            {destination2 && (
+                <DestinationData
+                    className="first-des-reverse"
+                    heading={destination2.heading}
+                    text={destination2.text}
+                    img1={destination2.img1}
+                    img2={destination2.img2}
+                    button="View Plan"
+                    onClick={() => handleTripClick(trip2)}
+                />
+            )}
+
+            {showModal && (
+                <ShowTrip trip={selectedTrip} setShowModal={setShowModal} />
+            )}
         </div>
     )
 }

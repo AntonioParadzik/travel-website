@@ -2,21 +2,27 @@ import express from "express";
 import cors from "cors";
 
 import {
-  createProduct,
-  getProduct,
-  getProducts,
-  updateProduct,
-  deleteProduct,
+  getTrips,
+  getRandomDestination,
+  createUser,
+  addCartItem,
+  getUsers,
+  getCartItems,
+  updateCartItem,
+  deleteCartItem,
 } from "../controllers/productController.js";
 
 const router = express.Router();
 
-router.options("/new", cors()); // ADDED
+router.options("/new", cors());
 
-router.get("/", getProducts);
-router.post("/new", createProduct);
-router.get("/product/:id", getProduct);
-router.put("/update/:id", updateProduct);
-router.delete("/delete/:id", deleteProduct);
+router.get("/", getTrips);
+router.get("/users", getUsers);
+router.get("/users/:userId/cart", getCartItems);
+router.post("/users/:userId/newCartItem", addCartItem);
+router.get("/randomDestination", getRandomDestination);
+router.post("/newUser", createUser);
+router.put("/users/:userId/update/:id", updateCartItem);
+router.delete("/users/:userId/cart/delete/:id", deleteCartItem);
 
 export default router;

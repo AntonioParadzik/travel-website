@@ -2,12 +2,12 @@ import './TripStyles.css'
 
 function TripData(props) {
     return (
-        <div className="t-card">
+        <div className="t-card" onClick={props.onClick}>
             <div className="t-image">
                 <img alt="image" src={props.image}></img>
             </div>
             <h4>{props.heading}</h4>
-            <p>{props.text}</p>
+            <p>€ {props.price} per person</p>
         </div>
     )
 }
