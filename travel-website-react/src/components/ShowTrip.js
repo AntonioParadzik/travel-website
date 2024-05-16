@@ -2,6 +2,8 @@ import { React, useState } from 'react'
 import './ShowTripStyles.css'
 import axios from 'axios'
 import { getAuth } from 'firebase/auth'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function ShowTrip({ trip, setShowModal }) {
     const auth = getAuth()
@@ -15,49 +17,60 @@ function ShowTrip({ trip, setShowModal }) {
     }
     async function handleAddToCart() {
         try {
-            // Fetch the current cart items
-            const response = await axios.get(
-                `http://localhost:5000/api/users/${userId}/cart`
-            )
-            const cartItems = response.data
-
-            // Check if the trip is already in the cart
-            const cartItem = cartItems.find(
-                (item) => item.heading === trip.heading
-            )
-
-            if (cartItem) {
-                // If the trip is in the cart, update the quantity
-                if (cartItem.quantity < 5) {
-                    await axios.put(
-                        `http://localhost:5000/api/users/${userId}/update/${cartItem.id}`,
-                        {
-                            quantity: parseInt(cartItem.quantity) + 1,
-                            totalPrice:
-                                trip.price * (parseInt(cartItem.quantity) + 1)
-                        }
-                    )
-                    console.log('Item quantity updated')
-                } else {
-                    console.log('Cannot add more of this item. Limit reached.')
-                }
+            if (userId === null) {
+                console.log('No user is signed in')
+                toast.error('You need to be signed in to add trips to cart')
+                setShowModal(false)
             } else {
-                // If the trip is not in the cart, add it to the cart
-                const cartData = {
-                    userId,
-                    heading: trip.heading,
-                    price: trip.price,
-                    image: trip.image,
-                    quantity: parseInt(1),
-                    totalPrice: trip.price * 1
-                }
-                await axios.post(
-                    `http://localhost:5000/api/users/${userId}/newCartItem`,
-                    cartData
+                const response = await axios.get(
+                    `http://localhost:5000/api/users/${userId}/cart`
                 )
-            }
+                const cartItems = response.data
 
-            setShowModal(false)
+                const cartItem = cartItems.find(
+                    (item) => item.heading === trip.heading
+                )
+
+                if (cartItem) {
+                    if (cartItem.quantity < 5) {
+                        await axios.put(
+                            `http://localhost:5000/api/users/${userId}/update/${cartItem.id}`,
+                            {
+                                quantity: parseInt(cartItem.quantity) + 1,
+                                totalPrice:
+                                    trip.price *
+                                    (parseInt(cartItem.quantity) + 1)
+                            }
+                        )
+                        console.log('Item quantity updated')
+                        toast.success('Item quantity updated')
+                    } else {
+                        console.log(
+                            'Cannot add more of this item. Limit reached.'
+                        )
+                        toast.error(
+                            'Cannot add more of this item. Limit reached.'
+                        )
+                    }
+                } else {
+                    const cartData = {
+                        userId,
+                        heading: trip.heading,
+                        price: trip.price,
+                        image: trip.image,
+                        quantity: parseInt(1),
+                        totalPrice: trip.price * 1
+                    }
+                    await axios.post(
+                        `http://localhost:5000/api/users/${userId}/newCartItem`,
+                        cartData
+                    )
+                    console.log('Item added to cart successfully')
+                    toast.success('Item added to cart successfully')
+                }
+
+                setShowModal(false)
+            }
         } catch (error) {
             console.error(error)
         }

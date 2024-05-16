@@ -70,25 +70,27 @@ const CartForm = () => {
         <div className="cart">
             <div className="cart-items">
                 <h1>Your Cart</h1>
-                {cart.map((item) => (
-                    <CartItem
-                        key={item.id}
-                        image={item.image}
-                        heading={item.heading}
-                        price={item.price}
-                        quantity={item.quantity}
-                        totalPrice={item.totalPrice}
-                        onQuantityChange={(newQuantity) =>
-                            handleQuantityChange(item.id, newQuantity)
-                        }
-                        onClickRemove={() => {
-                            handleClickRemove(item.id)
-                        }}
-                    />
-                ))}
+                {cart
+                    .filter((item) => item.id !== 'placeholder')
+                    .map((item) => (
+                        <CartItem
+                            key={item.id}
+                            image={item.image}
+                            heading={item.heading}
+                            price={item.price}
+                            quantity={item.quantity}
+                            totalPrice={item.totalPrice}
+                            onQuantityChange={(newQuantity) =>
+                                handleQuantityChange(item.id, newQuantity)
+                            }
+                            onClickRemove={() => {
+                                handleClickRemove(item.id)
+                            }}
+                        />
+                    ))}
             </div>
             <div className="cart-total">
-                <h2>Total</h2>
+                <h1>Total</h1>
                 <p>€ {cart.reduce((acc, item) => acc + item.totalPrice, 0)}</p>
                 <button onClick={() => navigate('/checkout')} type="button">
                     Checkout

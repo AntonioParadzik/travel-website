@@ -6,7 +6,7 @@ function CartItem(props) {
             <div className="cart-info">
                 <img alt="image" src={props.image}></img>
                 <div className="cart-info2">
-                    <h4>{props.heading}</h4>
+                    <h2>{props.heading}</h2>
                     <div className="item-remove" onClick={props.onClickRemove}>
                         <i className="fa-solid fa-trash-can"></i>
                         <p>Remove</p>

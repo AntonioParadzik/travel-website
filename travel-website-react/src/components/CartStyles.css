@@ -1,9 +1,9 @@
 .cart {
-    margin: 4rem 4rem;
+    margin: 4rem 6rem;
     margin-top: 10rem;
     display: flex;
     justify-content: space-between;
-    background-color: #f5f5f5;
+    background-color: #f4f4f4;
 }
 
 .cart-items {
@@ -29,7 +29,7 @@
 }
 
 .cart-info img {
-    width: 50%;
+    width: 40%;
     height: auto;
     border-radius: 7px;
 }
@@ -46,7 +46,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 14px;
+    font-size: 16px;
     color: gray;
     cursor: pointer;
 }
@@ -60,11 +60,13 @@
 
 .cart-count p {
     font-weight: 600;
-    width: 100px;
 }
 
 .cart-count select {
     width: 80px;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid black;
+    border-radius: 8px;
 }
 .cart-total {
     width: 30%;

@@ -11,6 +11,7 @@ import ErrorMessage from './components/layouts/ErrorMessage'
 import WithPrivateRoute from './routes/PrivateRoute'
 import Trips from './routes/Trips'
 import Cart from './routes/Cart'
+import Checkout from './routes/Checkout'
 function App() {
     return (
         <AuthProvider>
@@ -29,6 +30,16 @@ function App() {
                             element={
                                 <WithPrivateRoute>
                                     <Cart />
+                                </WithPrivateRoute>
+                            }
+                        />
+                    }
+                    {
+                        <Route
+                            path="/checkout"
+                            element={
+                                <WithPrivateRoute>
+                                    <Checkout />
                                 </WithPrivateRoute>
                             }
                         />

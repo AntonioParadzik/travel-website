@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import './RegisterStyles.css'
 
 import { useAuth } from '../contexts/AuthContext.js'
 
@@ -47,53 +48,49 @@ export default function Register() {
     }
 
     return (
-        <div className="">
-            <div className="">
-                <div>
-                    <h2 className="">Register your account</h2>
+        <div className="register-container">
+            <div className="register-form">
+                <div className="header">
+                    <h2 className="title">Register your account</h2>
                 </div>
-                <form className="" onSubmit={handleFormSubmit}>
-                    <div className="">
-                        <div>
+                <form className="form" onSubmit={handleFormSubmit}>
+                    <div className="form-group">
+                        <div className="input-field">
                             <input
                                 id="username"
                                 name="username"
                                 type="text"
                                 required
-                                className=""
                                 placeholder="Username"
                                 onChange={(e) => setUsername(e.target.value)}
                             />
                         </div>
-                        <div>
+                        <div className="input-field">
                             <input
                                 id="email-address"
                                 name="email"
                                 type="email"
                                 required
-                                className=""
                                 placeholder="Email address"
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
-                        <div>
+                        <div className="input-field">
                             <input
                                 id="password"
                                 name="password"
                                 type="password"
                                 required
-                                className=""
                                 placeholder="Password"
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
-                        <div>
+                        <div className="input-field">
                             <input
                                 id="confirmPassword"
                                 name="confirmPassword"
                                 type="password"
                                 required
-                                className=""
                                 placeholder="Confirm Password"
                                 onChange={(e) =>
                                     setConfirmPassword(e.target.value)
@@ -101,14 +98,14 @@ export default function Register() {
                             />
                         </div>
                     </div>
-                    <div>
-                        <button type="submit" className="" disabled={loading}>
+                    <div className="submit-btn">
+                        <button type="submit" disabled={loading}>
                             Register
                         </button>
                     </div>
-                    <div className="">
-                        <div className="">
-                            <Link to="/login" className="">
+                    <div className="login-link">
+                        <div className="text-center">
+                            <Link to="/login" className="link">
                                 Already have an account? Login
                             </Link>
                         </div>

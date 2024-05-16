@@ -130,7 +130,9 @@ export const getRandomDestination = async (req, res, next) => {
     }
   } catch (error) {
     console.error(error);
-    res.status(500).send("An error occurred while creating the user");
+    res
+      .status(500)
+      .send("An error occurred while fetching the trips and destinations");
   }
 };
 
@@ -151,7 +153,7 @@ export const getUsers = async (req, res, next) => {
     }
   } catch (error) {
     console.error(error);
-    res.status(500).send("An error occurred while creating the user");
+    res.status(500).send("An error occurred while getting users");
   }
 };
 export const addCartItem = async (req, res, next) => {
@@ -215,7 +217,7 @@ export const updateCartItem = async (req, res, next) => {
     res.status(200).send("cart item updated successfully");
   } catch (error) {
     console.error(error.message);
-    res.status(500).send("An error occurred while fetching cart items");
+    res.status(500).send("An error occurred while updating cart items");
   }
 };
 
@@ -229,5 +231,23 @@ export const deleteCartItem = async (req, res, next) => {
   } catch (error) {
     console.error(error.message);
     res.status(500).send("An error occurred while deleting cart item");
+  }
+};
+
+export const deleteCart = async (req, res, next) => {
+  try {
+    const userId = req.params.userId;
+    const userDocRef = doc(db, "users", userId);
+    const cartCollectionRef = collection(userDocRef, "cart");
+    const cartItems = await getDocs(cartCollectionRef);
+
+    cartItems.forEach(async (doc) => {
+      await deleteDoc(doc.ref);
+    });
+
+    res.status(200).send("cart deleted successfully");
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("An error occurred while deleting cart");
   }
 };

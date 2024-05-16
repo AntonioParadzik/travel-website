@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import './LoginStyles.css'
 
 import { useAuth } from '../contexts/AuthContext'
 
@@ -34,48 +35,44 @@ export default function Login() {
     }
 
     return (
-        <div className="">
-            <div className="">
-                <div>
-                    <h2 className="">Login to your account</h2>
+        <div className="login-container">
+            <div className="login-form">
+                <div className="header">
+                    <h2 className="title">Login to your account</h2>
                 </div>
-                <form className="" onSubmit={handleFormSubmit}>
-                    <div className="">
-                        <div>
+                <form className="form" onSubmit={handleFormSubmit}>
+                    <div className="form-group">
+                        <div className="input-field">
                             <input
                                 id="email-address"
                                 name="email"
                                 type="email"
-                                autoComplete="email"
                                 required
-                                className=""
                                 placeholder="Email address"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
-                        <div>
+                        <div className="input-field">
                             <input
                                 id="password"
                                 name="password"
                                 type="password"
-                                autoComplete="current-password"
                                 required
-                                className=""
                                 placeholder="Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
                     </div>
-                    <div>
-                        <button type="submit" className="" disabled={loading}>
+                    <div className="submit-btn">
+                        <button type="submit" disabled={loading}>
                             Login
                         </button>
                     </div>
-                    <div className="">
-                        <div className="">
-                            <Link to="/register" className="">
+                    <div className="register-link">
+                        <div className="text-center">
+                            <Link to="/register" className="link">
                                 Don't have an account? Register
                             </Link>
                         </div>

@@ -10,6 +10,7 @@ import {
   getCartItems,
   updateCartItem,
   deleteCartItem,
+  deleteCart,
 } from "../controllers/productController.js";
 
 const router = express.Router();
@@ -24,5 +25,6 @@ router.get("/randomDestination", getRandomDestination);
 router.post("/newUser", createUser);
 router.put("/users/:userId/update/:id", updateCartItem);
 router.delete("/users/:userId/cart/delete/:id", deleteCartItem);
+router.delete("/users/:userId/cart/deleteAll", deleteCart);
 
 export default router;

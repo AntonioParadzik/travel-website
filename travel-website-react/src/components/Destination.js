@@ -3,6 +3,8 @@ import DestinationData from './DestinationData'
 import './DestinationStyles.css'
 import ShowTrip from './ShowTrip'
 import axios from 'axios'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const Destination = () => {
     const [showModal, setShowModal] = useState(false)
@@ -26,6 +28,7 @@ const Destination = () => {
                 setDestination1(result1.destination)
                 setTrip2(result2.trip)
                 setDestination2(result2.destination)
+                console.log(result1, result2)
             })
             .catch((error) => {
                 console.error(error)
@@ -33,36 +36,45 @@ const Destination = () => {
     }, [])
 
     return (
-        <div className="destination">
-            <h1>Popular Destinations</h1>
-            <p>
-                Tours give you the opportunity to see a lot, within a time
-                frame.
-            </p>
+        <div>
+            {
+                <>
+                    <ToastContainer containerId={1} />
+                </>
+            }
+            <div className="destination">
+                <h1>Popular Destinations</h1>
+                <p>
+                    Tours give you the opportunity to see a lot, within a time
+                    frame.
+                </p>
 
-            {destination1 && (
-                <DestinationData
-                    className="first-des"
-                    heading={destination1.heading}
-                    text={destination1.text}
-                    img1={destination1.img1}
-                    img2={destination1.img2}
-                    button="View Plan"
-                    onClick={() => handleTripClick(trip1)}
-                />
-            )}
+                {destination1 && (
+                    <DestinationData
+                        key={trip1.id}
+                        className="first-des"
+                        heading={destination1.heading}
+                        text={destination1.text}
+                        img1={destination1.img1}
+                        img2={destination1.img2}
+                        button="View Plan"
+                        onClick={() => handleTripClick(trip1)}
+                    />
+                )}
 
-            {destination2 && (
-                <DestinationData
-                    className="first-des-reverse"
-                    heading={destination2.heading}
-                    text={destination2.text}
-                    img1={destination2.img1}
-                    img2={destination2.img2}
-                    button="View Plan"
-                    onClick={() => handleTripClick(trip2)}
-                />
-            )}
+                {destination2 && (
+                    <DestinationData
+                        key={trip2.id}
+                        className="first-des-reverse"
+                        heading={destination2.heading}
+                        text={destination2.text}
+                        img1={destination2.img1}
+                        img2={destination2.img2}
+                        button="View Plan"
+                        onClick={() => handleTripClick(trip2)}
+                    />
+                )}
+            </div>
 
             {showModal && (
                 <ShowTrip trip={selectedTrip} setShowModal={setShowModal} />

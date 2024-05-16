@@ -1,9 +1,11 @@
-import './TripStyles.css'
+import './AllTripsStyles.css'
 import TripData from './TripData'
 import { useNavigate } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import ShowTrip from './ShowTrip'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function Trip() {
     const navigate = useNavigate()
@@ -31,6 +33,7 @@ function Trip() {
                     allTrips.splice(randomIndex, 1)
                 }
                 setTrips(selectedTrips)
+                console.log(selectedTrips)
             })
             .catch((error) => {
                 console.error(error)
@@ -39,6 +42,11 @@ function Trip() {
 
     return (
         <div className="trip">
+            {
+                <>
+                    <ToastContainer containerId={2} />
+                </>
+            }
             <div className="trip-title">
                 <h1>Discover Your Next Adventure</h1>
                 <button onClick={() => navigate('/trips')} type="button">

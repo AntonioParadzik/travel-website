@@ -7,10 +7,19 @@
     font-size: 3rem;
 }
 
-.all-tripcard {
-    margin-top: 30px;
+.filter {
     display: flex;
-    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.8rem;
+    font-weight: 600;
+    margin: 1rem 0;
+}
+
+.filter select {
+    padding: 0.2rem 0.5rem;
+    border: 1px solid black;
+    border-radius: 8px;
 }
 
 .triprow {
@@ -22,7 +31,7 @@
 .t-card {
     width: 100%;
     text-align: start;
-    box-shadow: 0 15px 25px 2px rgba(0, 0, 0, 0.19);
+    box-shadow: 0 12px 15px 2px rgba(0, 0, 0, 0.19);
     border-radius: 7px;
     cursor: pointer;
     padding: 1rem 0.8rem;
