@@ -87,6 +87,9 @@ function ShowTrip({ trip, setShowModal }) {
     return (
         <div className="modal" onClick={() => setShowModal(false)}>
             <div className="modal-card" onClick={stopPropagation}>
+                <button onClick={() => setShowModal(false)}>
+                    <i className="fa-solid fa-xmark"></i>
+                </button>
                 <h2>{trip.heading}</h2>
                 <div className="modal-content">
                     <img src={trip.image} alt={trip.heading} />

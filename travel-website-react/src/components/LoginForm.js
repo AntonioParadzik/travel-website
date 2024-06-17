@@ -10,8 +10,9 @@ export default function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState('') // Step 1: Add error state
 
-    const { currentUser, login, setError } = useAuth()
+    const { currentUser, login } = useAuth()
 
     useEffect(() => {
         if (currentUser) {
@@ -28,7 +29,7 @@ export default function Login() {
             await login(email, password)
             navigate('/')
         } catch (e) {
-            setError('Failed to login')
+            setError('Error: Failed to login')
         }
 
         setLoading(false)
@@ -36,7 +37,13 @@ export default function Login() {
 
     return (
         <div className="login-container">
+            {error && <div className="error-message">{error}</div>}
             <div className="login-form">
+                <div className="back-to-home">
+                    <Link to="/" className="link">
+                        ← Back to Home
+                    </Link>
+                </div>
                 <div className="header">
                     <h2 className="title">Login to your account</h2>
                 </div>

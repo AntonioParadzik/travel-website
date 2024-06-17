@@ -12,10 +12,10 @@ export default function Register() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-
+    const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
 
-    const { currentUser, register, setError } = useAuth()
+    const { currentUser, register } = useAuth()
 
     useEffect(() => {
         if (currentUser) {
@@ -27,7 +27,7 @@ export default function Register() {
         e.preventDefault()
 
         if (password !== confirmPassword) {
-            return setError('Passwords do not match')
+            return setError('Error: Passwords do not match')
         }
 
         try {
@@ -41,7 +41,7 @@ export default function Register() {
             }
             await axios.post('http://localhost:5000/api/newUser', userData)
         } catch (e) {
-            setError('Failed to register')
+            setError('Error: Failed to register')
         }
 
         setLoading(false)
@@ -49,10 +49,17 @@ export default function Register() {
 
     return (
         <div className="register-container">
+            {error && <div className="error-message">{error}</div>}
             <div className="register-form">
+                <div className="back-to-home">
+                    <Link to="/" className="link">
+                        ← Back to Home
+                    </Link>
+                </div>
                 <div className="header">
                     <h2 className="title">Register your account</h2>
                 </div>
+
                 <form className="form" onSubmit={handleFormSubmit}>
                     <div className="form-group">
                         <div className="input-field">

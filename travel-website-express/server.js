@@ -1,8 +1,7 @@
 import express from "express";
 import cors from "cors";
 import config from "./config.js";
-import productRoute from "./routes/productRoute.js";
-import initializeFirebaseApp from "./firebase.js";
+import allRoutes from "./routes/allRoutes.js";
 
 const app = express();
 
@@ -16,7 +15,7 @@ app.use((req, res, next) => {
 });
 
 //routes
-app.use("/api", productRoute);
+app.use("/api", allRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

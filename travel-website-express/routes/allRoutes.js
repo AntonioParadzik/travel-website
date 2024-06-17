@@ -1,17 +1,19 @@
 import express from "express";
 import cors from "cors";
 
+import { createUser, getUsers } from "../controllers/userController.js";
+
+import { getTrips } from "../controllers/tripController.js";
+
 import {
-  getTrips,
-  getRandomDestination,
-  createUser,
   addCartItem,
-  getUsers,
   getCartItems,
   updateCartItem,
   deleteCartItem,
   deleteCart,
-} from "../controllers/productController.js";
+} from "../controllers/cartController.js";
+
+import { getRandomDestination } from "../controllers/destinationController.js";
 
 const router = express.Router();
 

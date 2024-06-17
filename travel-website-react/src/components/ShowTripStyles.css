@@ -29,6 +29,10 @@
     animation-fill-mode: forwards;
 }
 
+.modal-card h2 {
+    padding-left: 50px;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -45,6 +49,7 @@
 }
 
 .modal-card button {
+    display: inline;
     float: right;
 }
 
@@ -76,4 +81,32 @@
 .modal-card h2 {
     font-size: 30px;
     padding-bottom: 16px;
+}
+
+@media screen and (max-width: 850px) {
+    .modal h2 {
+        font-size: 1.5rem;
+    }
+    .modal-card {
+        padding: 20px;
+    }
+
+    .modal img {
+        width: 55%;
+    }
+
+    .modal-text {
+        padding-top: 1rem;
+        padding-left: 0;
+    }
+
+    .modal-content {
+        flex-direction: column;
+    }
+
+    .modal-cart {
+        gap: 40px;
+        justify-content: center;
+        align-items: center;
+    }
 }

@@ -71,4 +71,12 @@
         width: 100%;
         margin-bottom: 1.5rem;
     }
+
+    .triprow {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #priceFilter {
+    }
 }

@@ -92,9 +92,11 @@ const CartForm = () => {
             <div className="cart-total">
                 <h1>Total</h1>
                 <p>€ {cart.reduce((acc, item) => acc + item.totalPrice, 0)}</p>
-                <button onClick={() => navigate('/checkout')} type="button">
-                    Checkout
-                </button>
+                {cart.reduce((acc, item) => acc + item.totalPrice, 0) > 0 && (
+                    <button onClick={() => navigate('/checkout')} type="button">
+                        Checkout
+                    </button>
+                )}
             </div>
         </div>
     )

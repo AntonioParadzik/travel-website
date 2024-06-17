@@ -70,17 +70,52 @@
 }
 .cart-total {
     width: 30%;
-    height: 200px;
+    height: 176px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 24px;
+    gap: 14px;
     background-color: white;
     padding: 1.5rem;
     margin-top: 1rem;
     margin-right: 1rem;
+    margin-bottom: 1rem;
 }
 .cart-total p {
     font-weight: 600;
+}
+
+.cart-total button {
+    display: inline;
+}
+
+@media screen and (max-width: 850px) {
+    .cart {
+        margin: 4rem 2rem;
+        margin-top: 10rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .cart-items {
+        width: 100%;
+        margin: 1rem;
+    }
+
+    .cart-total {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .cart-count select {
+        width: 60px;
+    }
+
+    .cart-info2 h2 {
+        font-size: 20px;
+        padding-right: 3rem;
+    }
 }
