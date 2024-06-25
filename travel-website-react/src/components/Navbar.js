@@ -2,12 +2,12 @@ import { useState } from 'react'
 import './NavbarStyles.css'
 import { MenuItems } from './MenuItems'
 import { Link, useNavigate } from 'react-router-dom'
-import { LogoutIcon } from '@heroicons/react/outline'
 import { useAuth } from '../contexts/AuthContext'
 
 const Navbar = () => {
     const [clicked, setClicked] = useState(false)
-    const { currentUser, logout, setError } = useAuth()
+    const { currentUser, logout } = useAuth()
+    const [error, setError] = useState('')
     const navigate = useNavigate()
 
     const handleClick = () => {
@@ -26,7 +26,8 @@ const Navbar = () => {
 
     return (
         <nav className="NavbarItems">
-            <h1 className="navbar-logo">Trippy</h1>
+            {error && <div className="error-message">{error}</div>}
+            <h1 className="navbar-logo">Voyage</h1>
 
             <div className="menu-icons" onClick={handleClick}>
                 <i className={clicked ? 'fas fa-times' : 'fas fa-bars'}></i>

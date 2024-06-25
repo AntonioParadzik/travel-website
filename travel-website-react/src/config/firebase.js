@@ -1,9 +1,5 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
-// import dotenv from 'dotenv'
-
-// // Load environment variables from .env file
-// dotenv.config()
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,

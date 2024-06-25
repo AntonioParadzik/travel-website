@@ -24,6 +24,8 @@
     padding: 30px;
     border-radius: 10px;
     max-width: 1000px;
+    max-height: 90vh;
+    overflow: auto;
     transition: 0 0.3s ease-in-out;
     animation: fadeIn 0.5s 1;
     animation-fill-mode: forwards;

@@ -16,6 +16,7 @@
 .trip-title button {
     height: 40px;
     font-size: 14px;
+    display: inline;
 }
 
 .tripcard {
@@ -48,6 +49,13 @@
 }
 
 @media screen and (max-width: 850px) {
+    .trip-title {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
     .trip h1 {
         font-size: 2.2rem;
     }

@@ -6,8 +6,7 @@ import Contact from './routes/Contact'
 import { Route, Routes } from 'react-router-dom'
 import Login from './routes/Login'
 import Register from './routes/Register'
-import { AuthProvider, useAuth } from './contexts/AuthContext'
-import ErrorMessage from './components/layouts/ErrorMessage'
+import { AuthProvider } from './contexts/AuthContext'
 import WithPrivateRoute from './routes/PrivateRoute'
 import Trips from './routes/Trips'
 import Cart from './routes/Cart'
@@ -16,7 +15,6 @@ function App() {
     return (
         <AuthProvider>
             <div className="App">
-                <ErrorMessage />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/trips" element={<Trips />} />

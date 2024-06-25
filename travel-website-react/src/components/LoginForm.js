@@ -10,7 +10,7 @@ export default function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState('') // Step 1: Add error state
+    const [error, setError] = useState('')
 
     const { currentUser, login } = useAuth()
 
